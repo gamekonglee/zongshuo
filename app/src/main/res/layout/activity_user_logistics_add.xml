@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:onClick="goBack"
+                android:paddingLeft="10dp">
+
+                <ImageView
+                    android:id="@+id/topLeftBtn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/goback"
+
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/add_logistics"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:visibility="visible"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/info_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="10dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="公司名称:"
+                        android:textColor="@color/txt_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/logistics_name_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@color/transparent"
+                        android:hint="如浙江物流"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/txt_black"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <View style="@style/view_style" />
+
+                <LinearLayout
+                    android:id="@+id/user_addr_llyCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/address_city"
+                        android:textColor="@color/txt_black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/user_addr_txtCity"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/img_jump"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/margin_normal"
+                        android:background="@drawable/icon_right_normal" />
+                </LinearLayout>
+
+                <View style="@style/view_style" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="详细地区:"
+                        android:textColor="@color/txt_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/logistics_address_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@color/transparent"
+                        android:hint="路/门牌号(非必填)"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/txt_black"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <View style="@style/view_style" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="联系电话:"
+                        android:textColor="@color/txt_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/logistics_phone_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@color/transparent"
+                        android:hint="接受方或转运方的联系电话(非必要)"
+                        android:inputType="phone"
+                        android:textColor="@color/txt_black"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <View style="@style/view_style" />
+                <View style="@style/view_style" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_height"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="物流备注:"
+                        android:textColor="@color/txt_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/logistics_remark_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@color/transparent"
+                        android:hint="备注信息(非必填)"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/txt_black"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_ll"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tip_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="重要提示"
+                />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/button_style"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="保存并使用"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+</LinearLayout>

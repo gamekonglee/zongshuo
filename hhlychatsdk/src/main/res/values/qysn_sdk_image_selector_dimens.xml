@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="qysn_image_size">120dp</dimen>
+    <dimen name="qysn_space_size">2dp</dimen>
+    <dimen name="qysn_folder_cover_size">72dp</dimen>
+
+
+
+
+    <!-- 图片选择器 -->
+    <dimen name="qysn_btn_radius">2dp</dimen>
+    <dimen name="qysn_bar_height">48dp</dimen>
+    <dimen name="qysn_btn_height">32dp</dimen>
+    <dimen name="qysn_margin_text">8dp</dimen>
+    <dimen name="qysn_margin_layout">16dp</dimen>
+    <dimen name="qysn_status_bar_height">25dp</dimen>
+    <dimen name="qysn_big_image_size">74dp</dimen>
+    <dimen name="qysn_min_button_width">52dp</dimen>
+    <dimen name="qysn_middle_text_size">17sp</dimen>
+    <dimen name="qysn_small_text_size">15sp</dimen>
+    <dimen name="qysn_mini_text_size">13sp</dimen>
+
+    <dimen name="qysn_commonlanguage_bottom">40dp</dimen>
+    <dimen name="qysn_commonlanguage_top">70dp</dimen>
+</resources>

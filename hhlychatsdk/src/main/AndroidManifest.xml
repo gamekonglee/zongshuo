@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sevenonechat.sdk">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+
+        <!--<meta-data
+            android:name="LYT_APPKEY"
+            android:value="13322031" />
+        <meta-data
+            android:name="LYT_APPSECRET"
+            android:value="191e646e6e6746f0b3b093ed32dc7942" />
+        <meta-data
+            android:name="LYT_CP_CODE"
+            android:value="13322" />-->
+
+
+        <activity
+            android:name="com.sevenonechat.sdk.compts.InfoSubmitActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Qysn_LeaveMsgTheame"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden"></activity>
+
+        <activity
+            android:name="com.sevenonechat.sdk.compts.ImageSelectorActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Qysn_APPNoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden" />
+
+
+        <activity
+            android:name="com.sevenonechat.sdk.compts.ImagePreviewActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Qysn_APPNoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.sevenonechat.sdk.compts.ImageCropActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Qysn_APPNoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden" />
+
+
+        <activity
+            android:name="com.sevenonechat.sdk.compts.PhotoViewActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden" />
+        <service
+            android:name="com.sevenonechat.sdk.service.ChatService"
+            android:exported="false"></service>
+        <service android:name="com.qysn.social.mqtt.service.LYTMqttService" />
+
+        <provider
+            android:authorities="com.hhly.chatsdk.fileprovider2"
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/qysn_filepaths"/>
+        </provider>
+    </application>
+
+</manifest>

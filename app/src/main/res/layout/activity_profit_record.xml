@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:onClick="goBack"
+                android:paddingLeft="10dp">
+                <ImageView
+                    android:id="@+id/topLeftBtn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/goback"
+
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_centerInParent="true"
+                android:text="收益明细"
+                />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <View
+        android:background="@color/goods_details_sku"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:text="按时间"
+            android:textColor="#444444"
+            android:textSize="16sp"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+            <bc.zongshuo.com.ui.view.TextViewPlus
+                android:id="@+id/tv_start_date"
+                android:text="选择开始日期"
+                android:textSize="11sp"
+                android:drawableLeft="@mipmap/zs_sy_icon_rl"
+                app:left_width="17.5dp"
+                app:left_height="16dp"
+                android:gravity="center"
+                android:drawablePadding="5dp"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="-"
+                android:textSize="16sp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <bc.zongshuo.com.ui.view.TextViewPlus
+                android:id="@+id/tv_end_date"
+                android:text="选择截止日期"
+                android:layout_marginLeft="15dp"
+                android:textSize="11sp"
+                android:drawableLeft="@mipmap/zs_sy_icon_rl"
+                app:left_width="17.5dp"
+                app:left_height="16dp"
+                android:gravity="center"
+                android:drawablePadding="5dp"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_month"
+        android:text="本月收益：¥ 0"
+        android:textSize="18sp"
+        android:textColor="#444444"
+        android:background="@color/goods_details_sku"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:background="#ffffff"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/background_color">
+
+                <include layout="@layout/common_error" />
+                <include
+                    android:id="@+id/null_net"
+                    layout="@layout/empty_page_no_wifi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+
+                    />
+                <include
+                    android:id="@+id/null_view"
+                    layout="@layout/empty_page_no_recoder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    />
+
+                <com.lib.common.hxp.view.PullToRefreshLayout
+                    android:id="@+id/contentView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include layout="@layout/refresh_head" />
+                    <!-- 支持所有实现Pullable接口的View -->
+
+                    <com.lib.common.hxp.view.PullableScrollView
+                        android:id="@+id/scrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.lib.common.hxp.view.ListViewForScrollView
+                                android:id="@+id/order_sv"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:horizontalSpacing="5dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:paddingTop="5dp"
+                                android:verticalSpacing="15dp"
+                                android:dividerHeight="0dip"
+                                android:listSelector="@android:color/transparent"
+                                android:background="@android:color/transparent"/>
+                        </LinearLayout>
+                    </com.lib.common.hxp.view.PullableScrollView>
+
+                    <include layout="@layout/load_more" />
+
+                </com.lib.common.hxp.view.PullToRefreshLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/pd"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+    </FrameLayout>
+</LinearLayout>

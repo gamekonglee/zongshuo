@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:textSize="15sp"
+    android:textColor="#333333"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:gravity="left|center_vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:background="@drawable/qysn_sdk_knowledge_selector"
+    android:clickable="true"
+    >
+
+</TextView>

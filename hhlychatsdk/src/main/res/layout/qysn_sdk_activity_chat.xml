@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sevenonechat.sdk.chatview.layout.KeyboardDetectorRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chat_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/qysn_content_bg">
+
+    <LinearLayout
+        android:id="@+id/ll_notific"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:visibility="visible"
+        android:background="#fff0c2">
+
+        <ImageView
+            android:id="@+id/iv_notific"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/qysn_chat_notice_icon" />
+
+        <TextView
+            android:id="@+id/tv_notific"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:elevation="4dp"
+            android:paddingRight="8dp"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_notific"
+        android:layout_above="@+id/input_container"
+        android:orientation="vertical">
+        <com.sevenonechat.sdk.views.PullRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:prl_headerClass="com.sevenonechat.sdk.views.ClassicsHeader"
+            app:prl_headerFront="true"
+            app:prl_headerShowGravity="follow"
+            app:prl_pullDownMaxDistance="120dp"
+            app:prl_pullUpMaxDistance="200dp">
+
+            <com.sevenonechat.sdk.views.CustomListView
+                android:id="@+id/lv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="#00000000"
+                android:divider="@color/qysn_content_bg"
+                android:dividerHeight="3dp"
+                android:listSelector="#00000000"
+                android:transcriptMode="alwaysScroll"
+                android:stackFromBottom="true"
+                android:smoothScrollbar="true"
+                android:scrollingCache="false"
+                android:animationCache="false"
+                />
+        </com.sevenonechat.sdk.views.PullRefreshLayout>
+
+        <TextView
+            android:id="@+id/unReadmsgCount"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:textColor="@color/qysn_tips_msg"
+            android:background="@drawable/qysn_new_msg_btn_bg"
+            android:textSize="14sp"
+            android:layout_gravity="bottom|right"
+            android:gravity="center"
+            android:text="@string/qysn_has_new_msg"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:visibility="gone"
+            android:drawableRight="@drawable/qysn_arrow_down"
+            android:drawablePadding="10dp"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/input_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
+
+</com.sevenonechat.sdk.chatview.layout.KeyboardDetectorRelativeLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/qysn_dialog_evaluate_title_bg"
+            android:gravity="center"
+            android:text="@string/qysn_dialog_title_evaluate_session"
+            android:textColor="@color/qysn_primary_white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/qysn_dialog_btn_back"
+            android:textColor="@color/qysn_primary_white" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/qysn_primary_white"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/qysn_dialog_evaluate_content"
+            android:background="@color/qysn_white"
+            android:textColor="#646464"
+            android:textSize="15sp" />
+
+        <RatingBar
+            android:id="@+id/ratebar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:numStars="5" style="@style/Qysn_dialog_rating_bar"
+            android:stepSize="1" />
+
+        <View android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/qysn_theme_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/qysn_dialog_btn_left"
+                android:text="@string/qysn_btn_close"
+                android:textColor="@color/qysn_theme_blue" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/qysn_theme_gray" />
+
+            <Button
+                android:id="@+id/btn_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/qysn_dialog_btn_right"
+                android:text="@string/qysn_btn_submit"
+                android:textColor="@color/qysn_theme_blue" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

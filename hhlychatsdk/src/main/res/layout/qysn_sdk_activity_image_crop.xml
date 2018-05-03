@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/qysn_bar_height"
+        android:background="@color/qysn_bar_grey_90">
+
+        <TextView
+            android:id="@+id/done_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/qysn_btn_height"
+            android:minWidth="@dimen/qysn_min_button_width"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/qysn_margin_text"
+            android:background="@drawable/qysn_btn_round_green_selector"
+            android:gravity="center"
+            android:text="@string/qysn_use"
+            android:textColor="@color/qysn_white_text_selector"
+            android:textSize="@dimen/qysn_small_text_size" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.sevenonechat.sdk.views.CircleImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

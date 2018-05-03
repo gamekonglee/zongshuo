@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="qysn_colorPrimary">#3F51B5</color>
+    <color name="qysn_colorAccent">#FF4081</color>
+    <color name="qysn_colorPrimaryDark">#303F9F</color>
+
+    <color name="qysn_content_bg">#f0f0f0</color>
+
+    <color name="qysn_theme_blue">#227AE4</color>
+    <color name="qysn_theme_gray">#a6a6a6</color>
+    <color name="qysn_text_gray">#646464</color>
+    <color name="qysn_primary_white">#ffffff</color>
+    <color name="qysn_primary_pink">#ff4466</color>
+    <color name="qysn_question_color">#fe3000</color>
+    <color name="qysn_transparent">#00000000</color>
+    <color name="qysn_dialog_back">#fefefe</color>
+
+
+    <!--　图片选择器-->
+    <color name="qysn_white">#ffffff</color>
+    <color name="qysn_white_70">#ADFFFFFF</color>
+    <color name="qysn_black">#000000</color>
+    <color name="qysn_black_3">#333333</color>
+    <color name="qysn_green">#43c117</color>
+    <color name="qysn_green_70">#AD43c117</color>
+    <color name="qysn_bar_grey_90">#dd393a3e</color>
+    <color name="qysn_grey">#999999</color>
+    <color name="qysn_divider_color">#dcdcdc</color>
+    <color name="qysn_content_grey">#353535</color>
+    <color name="qysn_image_overlay">#20000000</color>
+    <color name="qysn_image_overlay2">#80000000</color>
+
+    <color name="qysn_sdk_knowledge_color">#00a8fe</color>
+    <color name="qysn_sdk_process_evalute_color">#227AE4</color>
+    <color name="qysn_sdk_transfer_customer">#FF0000</color>
+    <color name="qysn_sdk_recreate_session_color">#FF0000</color>
+    <color name="qysn_sdk_msg_from_color">#333333</color>
+    <color name="qysn_sdk_msg_to_color">#ffffff</color>
+
+    <color name="qysn_colorFF666666">#ff666666</color>
+    <color name="qysn_colorFF999999">#ff999999</color>
+    <color name="qysn_color9EFFFFFF">#9EFFFFFF</color>
+    <color name="qysn_tips_msg">#3caaff</color>
+</resources>

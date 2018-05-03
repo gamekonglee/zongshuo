@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/main_ll"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/logistics_name_rl"
+        style="@style/mine_item_style02"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/consignee_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/coordinate_iv"
+            android:textColor="@color/fontColor2"
+            android:textSize="14dip"/>
+
+        <TextView
+            android:id="@+id/phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/consignee_tv"
+            android:textColor="@color/fontColor2"
+            android:textSize="14dip"/>
+
+        <TextView
+            android:id="@+id/address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/consignee_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/consignee_tv"
+            android:textSize="14dip"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/view_style"
+        android:layout_marginTop="3dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/default_addr_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/defaults_address"
+            android:textColor="@color/colorPrimaryRed"
+            android:textSize="18sp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/select_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:id="@+id/select_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:button="@drawable/checked_cbx_bg"
+                android:clickable="false"
+                android:gravity="center_vertical"
+                android:text="  默认地址"
+                android:textColor="@color/fontColor6"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/edit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:text="编辑"
+            android:textSize="18sp"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/delete_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/zs_icodelete"/>
+
+        <ImageView
+            android:id="@+id/edit_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:src="@drawable/zs_icon_editor"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/background_color"/>
+</LinearLayout>

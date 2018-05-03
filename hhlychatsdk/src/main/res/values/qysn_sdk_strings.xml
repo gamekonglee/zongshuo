@@ -1,0 +1,113 @@
+<resources>
+    <string name="qysn_chat_sdk_name">在线客服</string>
+    <string name="qysn_leave_msg_tips">当前主题没有客服在线，请留言，我们会尽快答复您</string>
+    <string name="qysn_lbl_topic">主题：</string>
+    <string name="qysn_lbl_name">姓名：</string>
+    <string name="qysn_lbl_email">邮箱：</string>
+    <string name="qysn_lbl_mobile">手机：</string>
+    <string name="qysn_lbl_qq">Q&#160;&#160;Q：</string>
+
+    <string name="qysn_btn_back">返回</string>
+    <string name="qysn_btn_consult">咨询</string>
+    <string name="qysn_btn_close">关闭</string>
+    <string name="qysn_sdk_btn_satisfaction">满意</string>
+    <string name="qysn_sdk_btn_dissatisfied">不满意</string>
+    <string name="qysn_btn_submit">提交</string>
+    <string name="qysn_btn_cancel">取消</string>
+    <string name="qysn_btn_confirm">确认</string>
+    <string name="qysn_lbl_leave_msg">留言：</string>
+
+    <string name="qysn_loading">加载中...</string>
+    <string name="qysn_request_failure">网络问题，请重试。</string>
+
+    <string name="qysn_dialog_title_evaluate_session">会话评价</string>
+    <string name="qysn_dialog_evaluate_content">请对我们的服务进行评价</string>
+    <string name="qysn_dialog_title_end_session">结束会话</string>
+    <string name="qysn_dialog_btn_end_session">结束会话</string>
+    <string name="qysn_dialog_btn_submit_end_session">提交并结束</string>
+
+
+    <string name="permission_camera_user_hint">test onRequestPermissionsResult: 没有此权限，无法开启这个功能，请开启权限。请打开照相机权限</string>
+    <string name="permission_camera_user_hint1">test shouldShowRequestPermissionRationale: 没有此权限，无法开启这个功能，请开启权限。请打开照相机权限</string>
+
+
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。相机权限</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。读取存储卡权限</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。录音权限</string>
+
+    <string name="qysn_welcome_leave_msg">欢迎留言</string>
+    <string name="qysn_leave_msg_content">留言内容:</string>
+    <string name="qysn_submit">提交</string>
+    <string name="qysn_email">邮箱</string>
+    <string name="qysn_phone">手机</string>
+    <string name="qysn_names">姓名</string>
+    <string name="qysn_must_input">(必填)</string>
+    <string name="qysn_can_not_input">(选填)</string>
+    <string name="qysn_msg_content_not_null">请输入留言内容</string>
+    <string name="qysn_email_not_null">请输入邮箱</string>
+    <string name="qysn_phone_not_null">请输入手机号码</string>
+    <string name="qysn_name_not_null">请输入姓名</string>
+    <string name="qysn_name_not_larger_10">姓名的长度不能超过10个字,仅限汉子、字母、数字</string>
+    <string name="qysn_qq_not_null">请输入QQ号码</string>
+    <string name="qysn_please_input_corrent_emial">请输入正确的邮箱, 仅限50个字符</string>
+    <string name="qysn_please_input_corrent_phone">请输入正确的手机号码</string>
+    <string name="qysn_please_input_corrent_qq">请输入4到12位QQ号</string>
+
+    <string name="qysn_create_session_error">会话创建失败</string>
+    <string name="qysn_send_error_retry">发送失败，请重试</string>
+    <string name="qysn_chat_with_robot">您正在和机器人</string>
+    <string name="qysn_chat_with_customer">您正在和客服</string>
+    <string name="qysn_sdk_speak">&#160;对话</string>
+    <string name="qysn_sdk_session_wait_process">会话等待受理</string>
+    <string name="qysn_sdk_before_u">您前面还有</string>
+    <string name="qysn_sdk_number_of_vistor_wait">位用户等待咨询</string>
+    <string name="qysn_sdk_before">前面有</string>
+    <string name="qysn_sdk_wait_number">个人在等待</string>
+    <string name="qysn_sdk_service">服务</string>
+    <string name="qysn_sdk_wait_process">等待受理中</string>
+    <string name="qysn_sdk_going_input">正在输入...</string>
+    <string name="qysn_sdk_recreate_session">重新发起会话</string>
+    <string name="qysn_sdk_online">在线</string>
+    <string name="qysn_sdk_offline">离线</string>
+    <string name="qysn_sdk_open_record">开启录音</string>
+    <string name="qysn_sdk_open_camara">打开相机</string>
+    <string name="qysn_sdk_image">照片</string>
+    <string name="qysn_sdk_capture">拍摄</string>
+    <string name="qysn_sdk_location">位置</string>
+    <string name="qysn_sdk_press_speak">按住说话</string>
+    <string name="qysn_sdk_release_cancle">松开结束</string>
+    <string name="qysn_sdk_please_open_record_pemission">请开启录音权限</string>
+    <string name="qysn_apply_pemission">权限申请</string>
+    <string name="qysn_sdk_record_last_60">录音时间最多为60秒</string>
+    <string name="qysn_sdk_origin_image">原图</string>
+    <string name="qysn_sdk_transfer_error">转接人工失败</string>
+    <string name="qysn_sdk_leave_msg_success">留言成功</string>
+    <string name="qysn_sdk_leave_msg_error">留言失败</string>
+    <string name="qysn_sdk_please_open_this_pemission">请开启这个权限</string>
+    <string name="qysn_sdk_explain">说明:&#160;</string>
+    <string name="qysn_sdk_comfirm">确定</string>
+    <string name="qysn_sdk_cancle_send">手指向上滑,取消发送</string>
+    <string name="qysn_sdk_letgo_cancle_send">松开手指,取消发送</string>
+    <string name="qysn_sdk_record_time_so_less">录音时间过短</string>
+    <string name="qysn_sdk_not_support">【 暂不支持文件类型  】</string>
+    <string name="qysn_sdk_start_evalute">进行评价</string>
+    <string name="qysn_sdk_please_check_service">请您对客服的服务</string>
+    <string name="qysn_sdk_already_evalute">您已经对本次服务做了评价</string>
+    <string name="qysn_sdk_u_maybe_ask">你可能想问下面的问题</string>
+    <string name="qysn_pull_down">下拉加载</string>
+    <string name="qysn_pull_refreshing">正在加载...</string>
+    <string name="qysn_pull_release">释放立即加载</string>
+    <string name="qysn_pull_finish">加载完成</string>
+    <string name="qysn_pull_error">加载失败</string>
+    <string name="qysn_last_refreshing">上次更新 M-d HH:mm</string>
+    <string name="qysn_above_is_history">--------------- 以上为历史消息 ----------------</string>
+    <string name="qysn_has_new_msg">有新消息</string>
+    <string name="qysn_record_less">录音时间太短</string>
+    <string name="qysn_please_open_record">请开启录音权限</string>
+</resources>

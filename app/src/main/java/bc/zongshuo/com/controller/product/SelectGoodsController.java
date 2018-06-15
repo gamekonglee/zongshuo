@@ -450,7 +450,7 @@ public class SelectGoodsController extends BaseController implements INetworkCal
             mPopWindow.onShow(main_ll);
             mPopWindow.setListener(new IParamentChooseListener() {
                 @Override
-                public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId, String inventoryNum, int mount, int price, int goType,String url) {
+                public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId, String inventoryNum, int mount, double price, int goType,String url) {
                     if (isGoCart) {
                         String id="";
                         for (int i = 0; i < IssueApplication.mSelectProducts.length(); i++) {
@@ -578,6 +578,7 @@ public class SelectGoodsController extends BaseController implements INetworkCal
                     holder.old_price_tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.old_price_tv.setVisibility(View.VISIBLE);
                 }else {
+                    current_price = UIUtils.getMiniPrice(104,properties.getJSONObject(currentP).getJSONArray(Constance.attrs));
                     holder.old_price_tv.setVisibility(View.GONE);
                     holder.price_tv.setText("￥" + current_price);
                 }
@@ -639,9 +640,23 @@ public class SelectGoodsController extends BaseController implements INetworkCal
 
                                         }
                                         String parament = attrsArray.getJSONObject(j).getString(Constance.attr_name);
-                                        double currentPrice = price;
-                                        holder.price_tv.setText("代理价：￥" + currentPrice);
                                         holder.attrs_tv.setText(parament);//3210696429
+                                         token=MyShare.get(mView).getString(Constance.TOKEN);
+                                        if(!TextUtils.isEmpty(token)&&IssueApplication.mUserObject.getInt(Constance.level_id)!=104){
+                                            int levelId = IssueApplication.mUserObject.getInt(Constance.level_id);
+//                    int miniPricePostion=UIUtils.getMiniPricePostion(levelId,properties.getJSONObject(currentP).getJSONArray(Constance.attrs));
+//                    current_price = properties.getJSONObject(currentP).getJSONArray(Constance.attrs).getJSONObject(miniPricePostion).getInt(("attr_price_" + (levelId + 1)).replace("10",""))+"";
+                                            current_price = UIUtils.getMiniPrice(levelId,properties.getJSONObject(currentP).getJSONArray(Constance.attrs));
+                                            holder.price_tv.setText("代理价：￥" + current_price);
+                                            holder.old_price_tv.setText("原价：¥"+goodses.getJSONObject(position).getString(Constance.price));
+                                            holder.old_price_tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                                            holder.old_price_tv.setVisibility(View.VISIBLE);
+                                        }else {
+                                            current_price = UIUtils.getMiniPrice(104,properties.getJSONObject(currentP).getJSONArray(Constance.attrs));
+                                            holder.old_price_tv.setVisibility(View.GONE);
+                                            holder.price_tv.setText("￥" + current_price);
+                                        }
+
                                         break;
                                     }
                                 }

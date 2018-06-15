@@ -101,6 +101,7 @@ public class ProductDetailController extends BaseController implements INetworkC
         sun_image_ll = (LinearLayout) mView.findViewById(R.id.sun_image_ll);
         main_rl = (RelativeLayout) mView.findViewById(R.id.main_rl);
         collectIv = (ImageView) mView.findViewById(R.id.collectIv);
+
         container_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -465,7 +466,7 @@ public class ProductDetailController extends BaseController implements INetworkC
         mPopWindow.onShow(main_ll);
         mPopWindow.setListener(new IParamentChooseListener() {
             @Override
-            public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId,String inventoryNum, int mount, int price,int goType,String url) {
+            public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId,String inventoryNum, int mount, double price,int goType,String url) {
                 if(goType==1){
                     if(mView.isToken()){
                         return;

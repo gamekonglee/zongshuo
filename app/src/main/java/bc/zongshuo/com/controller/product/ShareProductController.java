@@ -1,5 +1,6 @@
 package bc.zongshuo.com.controller.product;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Message;
 import android.view.View;
@@ -16,6 +17,7 @@ import bc.zongshuo.com.R;
 import bc.zongshuo.com.cons.Constance;
 import bc.zongshuo.com.cons.NetWorkConst;
 import bc.zongshuo.com.controller.BaseController;
+import bc.zongshuo.com.ui.activity.WebViewActivity;
 import bc.zongshuo.com.ui.activity.product.ShareProductActivity;
 import bc.zongshuo.com.ui.view.ScannerUtils;
 import bc.zongshuo.com.ui.view.popwindow.ShareProductPopWindow;
@@ -91,7 +93,10 @@ public class ShareProductController extends BaseController {
         switch (type) {
             case R.id.share_01_tv:
                 mSelectType = 0;
-                displayGoods(NetWorkConst.WEB_PRODUCT_CARD + mId);
+                Intent intent=new Intent(mView, WebViewActivity.class);
+                intent.putExtra(Constance.url,NetWorkConst.WEB_PRODUCT_CARD + mId);
+                mView.startActivityForResult(intent,300);
+//                displayGoods(NetWorkConst.WEB_PRODUCT_CARD + mId);
                 share_01_iv.setVisibility(View.VISIBLE);
                 break;
             case R.id.share_02_tv:
@@ -141,16 +146,28 @@ public class ShareProductController extends BaseController {
                 mProductPopWindow = new ShareProductPopWindow(mView);
                 mProductPopWindow.mActivity = mView;
                 mProductPopWindow.mShareTitle = mTitle;
-                mProductPopWindow.mShareImgPath = mImagePath;
-                mProductPopWindow.mSharePath = mCardPath;
-                mProductPopWindow.onShow(main_ll);
-                mView.hideLoading();
+                mProductPopWindow.mIsLocal = true;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProductPopWindow.mBitmap = ImageUtil.createViewBitmap(share_ll);
+                        mShareImagePath = ScannerUtils.saveImageToGallery02(mView, mProductPopWindow.mBitmap, ScannerUtils.ScannerType.RECEIVER);
+                        mView.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mProductPopWindow.mShareImgPath = mShareImagePath;
+                                mProductPopWindow.mSharePath = mShareImagePath;
+                                mProductPopWindow.onShow(main_ll);
+                                mView.hideLoading();
+                            }
+                        });
+                    }
+                }).start();
                 break;
             case 1:
                 mProductPopWindow = new ShareProductPopWindow(mView);
                 mProductPopWindow.mActivity = mView;
                 mProductPopWindow.mShareTitle = mTitle;
-
                 mProductPopWindow.mIsLocal = true;
                 new Thread(new Runnable() {
                     @Override
@@ -260,5 +277,11 @@ public class ShareProductController extends BaseController {
 
         // 得到ImageLoader的实例(使用的单例模式)
         imageLoader = ImageLoader.getInstance();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==300){
+            displayGoods("file://"+data.getStringExtra("path"));
+        }
     }
 }

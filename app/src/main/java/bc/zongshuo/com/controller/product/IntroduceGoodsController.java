@@ -79,6 +79,7 @@ public class IntroduceGoodsController extends BaseController implements INetwork
     private ListView parameter_lv;
     private BaseAdapter mAdapter;
     private com.alibaba.fastjson.JSONObject mProductObject;
+    private TextView tv_sale;
 
     public IntroduceGoodsController(IntroduceGoodsFragment v) {
         mView = v;
@@ -144,6 +145,7 @@ public class IntroduceGoodsController extends BaseController implements INetwork
         collect_iv = (ImageView) mView.getActivity().findViewById(R.id.collect_iv);
         rl_rl = (RelativeLayout) mView.getActivity().findViewById(R.id.rl_rl);
         parameter_lv =  mView.getActivity().findViewById(R.id.parameter_lv);
+        tv_sale = mView.getActivity().findViewById(R.id.tv_sale);
 
     }
 
@@ -201,7 +203,7 @@ public class IntroduceGoodsController extends BaseController implements INetwork
             final String productName = goodsDetail.getName();
             mCurrentPrice = goodsDetail.getCurrent_price();
             mOldPrice = goodsDetail.getPrice();
-
+            tv_sale.setText("销量："+goodsDetail.getSales_count());
             List<Photos> photos = goodsDetail.getPhotos();
             if (!AppUtils.isEmpty(photos)) {
                 for (int i = 0; i < photos.size(); i++) {
@@ -242,6 +244,7 @@ public class IntroduceGoodsController extends BaseController implements INetwork
                             ((ProDetailActivity) mView.getActivity()).mAttrId = attrsArray.get(miniPosition).getId() + "";
                             if (!AppUtils.isEmpty(num)) {
                                 num = num.replace(".00", "");
+                                num = num.replace(".0", "");
                                 numTv.setText("库存：" + num);
                             }
 
@@ -296,25 +299,24 @@ public class IntroduceGoodsController extends BaseController implements INetwork
                         if (!AppUtils.isEmpty(attrsArray)) {
                             String token = MyShare.get(mView.getContext()).getString(Constance.TOKEN);
 
-                            int price = 0;
+                            double price = 0;
                             int parantLevel = MyShare.get(mView.getContext()).getInt(Constance.parant_level);
                             int miniPosition=UIUtils.getMiniPricePostion(attrsArray);
                             String num = attrsArray.getJSONObject(miniPosition).getString(Constance.number);
                             if (AppUtils.isEmpty(token)) {
-                                price = attrsArray.getJSONObject(miniPosition).getInteger(("attr_price_5"));
-
+                                price = attrsArray.getJSONObject(miniPosition).getDouble(("attr_price_5"));
                             } else {
                                 int levelId = IssueApplication.mUserObject.getInt(Constance.level_id);
-                                price = attrsArray.getJSONObject(miniPosition).getInteger(("attr_price_" + (levelId + 1)).replace("10", ""));
+                                price = attrsArray.getJSONObject(miniPosition).getDouble(("attr_price_" + (levelId + 1)).replace("10", ""));
                             }
                             mCurrentPrice = price + "";
                             String parament = attrsArray.getJSONObject(miniPosition).getString(Constance.attr_name);
                             ((ProDetailActivity) mView.getActivity()).mAttrId = attrsArray.getJSONObject(miniPosition).getString(Constance.id);
                             if (!AppUtils.isEmpty(num)) {
                                 num = num.replace(".00", "");
+                                num = num.replace(".0", "");
                                 numTv.setText("库存：" + num);
                             }
-
                             double currentPrice = price;
                             unPriceTv.setText("￥" + mOldPrice);
                             unPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -393,7 +395,7 @@ public class IntroduceGoodsController extends BaseController implements INetwork
         mPopWindow.setListener(new IParamentChooseListener() {
 
             @Override
-            public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId, String inventoryNum, int mount, int price, int goType,String url) {
+            public void onParamentChanged(String text, Boolean isGoCart, String property, String propertyId, String inventoryNum, int mount, double price, int goType,String url) {
                 if (goType == 1) {
                     if (mView.isToken()){
                         return;

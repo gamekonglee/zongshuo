@@ -24,6 +24,7 @@ public class NetWorkConst {
     public static final String DOWN_APK_URL = "http://app.08138.com/zsyc.apk";
     public static final String INFO_EDIT = API_HOST+"/v2/ecapi.user.info.edit";
     public static final String SALE_RECORD = API_HOST + "/v2/ecapi.order.abstract";
+    public static final String DEALER_ADD = API_HOST+"/v2/ecapi.dealer.add";
 
     public static String APK_NAME = "zsyc_v";
 
@@ -33,7 +34,8 @@ public class NetWorkConst {
     public final static String SHAREIMAGE_LOGO = SCENE_HOST + "logo.png";
 
     //产品卡
-    public final static String WEB_PRODUCT_CARD = "http://browser.edsmall.cn/webimg?url=" + SCENE_HOST + "phone_goods_show.php?id=";
+//    public final static String WEB_PRODUCT_CARD = "http://browser.edsmall.cn/webimg?url=" + SCENE_HOST + "phone_goods_show.php?id=";
+    public final static  String WEB_PRODUCT_CARD=SCENE_HOST+"phone_goods_show.php?id=";
 //    public final static String WEB_PRODUCT_CARD = "http://zs.bocang.cc/plan.php?c=goods&id=";
 
     //分享方案

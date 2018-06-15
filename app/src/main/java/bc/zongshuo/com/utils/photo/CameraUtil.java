@@ -15,9 +15,11 @@ import android.provider.MediaStore;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import bc.zongshuo.com.R;
 import bc.zongshuo.com.common.BaseFragment;
 import bc.zongshuo.com.cons.Constance;
 import bc.zongshuo.com.utils.MyShare;
+import bc.zongshuo.com.utils.UIUtils;
 import bocang.utils.MyLog;
 import bocang.utils.MyToast;
 import bocang.view.BaseActivity;
@@ -57,7 +59,7 @@ public class CameraUtil {
         return path;
     }
 
-    public final static String FILE_CACHE = "juhao";
+    public final static String FILE_CACHE = UIUtils.getString(R.string.app_name);
 
     /**
      * 获取缓存路径

@@ -101,7 +101,7 @@
     </LinearLayout>
     <TextView
         android:id="@+id/tv_month"
-        android:text="本月销售：¥ 0"
+        android:text="销售总额：¥ 0"
         android:textSize="18sp"
         android:textColor="#444444"
         android:background="@color/goods_details_sku"

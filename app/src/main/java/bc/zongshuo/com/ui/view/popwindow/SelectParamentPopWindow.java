@@ -60,7 +60,7 @@ public class SelectParamentPopWindow extends BasePopwindown implements View.OnCl
     private JSONObject itemObject;
     private int mAmount = 1;
     private String mParamentValue = "";
-    private int mPrice = 0;
+    private double mPrice = 0;
     private String mInventoryNum = "0";
     private String mParamentId="";
     private String mProductId="";
@@ -127,10 +127,10 @@ public class SelectParamentPopWindow extends BasePopwindown implements View.OnCl
             ImageLoadProxy.displayImage(img, goods_iv);
             String token = MyShare.get(mContext).getString(Constance.TOKEN);
             if (AppUtils.isEmpty(token)||IssueApplication.mUserObject==null) {
-                mPrice = itemObject.getInteger(("attr_price_5"));
+                mPrice = itemObject.getDouble(("attr_price_5"));
             } else {
                 int levelId = IssueApplication.mUserObject.getInt(Constance.level_id);
-                mPrice = itemObject.getInteger(("attr_price_" + (levelId + 1)).replace("10",""));
+                mPrice = itemObject.getDouble(("attr_price_" + (levelId + 1)).replace("10",""));
             }
             proPriceTv.setText("￥" + mPrice);
             remarktv.setText(""+mGoodObject.getString(Constance.remark));
@@ -330,13 +330,13 @@ public class SelectParamentPopWindow extends BasePopwindown implements View.OnCl
                         String token = MyShare.get(mContext).getString(Constance.TOKEN);
                         mInventoryNum = itemObject.getString(Constance.number);
                         if (AppUtils.isEmpty(token)) {
-                            mPrice = itemObject.getInteger(("attr_price_5" ));
+                            mPrice = itemObject.getDouble(("attr_price_5" ));
                         } else {
                             int levelId=104;
                             if(IssueApplication.mUserObject!=null){
                              levelId = IssueApplication.mUserObject.getInt(Constance.level_id);
                             }
-                            mPrice = itemObject.getInteger(("attr_price_" + (levelId + 1)).replace("10",""));
+                            mPrice = itemObject.getDouble(("attr_price_" + (levelId + 1)).replace("10",""));
                         }
                         if (!AppUtils.isEmpty(mInventoryNum)) {
                             mInventoryNum = mInventoryNum.replace(".00", "");

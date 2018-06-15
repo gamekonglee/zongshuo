@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -223,6 +224,9 @@ public class MyDistributorController extends BaseController implements PullToRef
                         String nickname = object.getString(Constance.nickname);
                         String username = object.getString(Constance.username);
                         String mobile = object.getString(Constance.mobile);
+                        if(TextUtils.isEmpty(mobile)){
+                            mobile=username;
+                        }
                         int level = object.getInt(Constance.level);
                         String joined_at = object.getString(Constance.joined_at);
                         int state=object.getInt(Constance.state);
@@ -243,6 +247,9 @@ public class MyDistributorController extends BaseController implements PullToRef
                                 String username02 = object02.getString(Constance.username);
                                 String nickname02 = object02.getString(Constance.nickname);
                                 String mobile02 = object.getString(Constance.mobile);
+                                if(TextUtils.isEmpty(mobile02)){
+                                    mobile02=username02;
+                                }
                                 int level02 = object02.getInt(Constance.level);
                                 String joined_at02 = object02.getString(Constance.joined_at);
                                 int state2=object02.getInt(Constance.state);
@@ -261,6 +268,9 @@ public class MyDistributorController extends BaseController implements PullToRef
                                     String nickname03 = object03.getString(Constance.nickname);
                                     String username03 = object03.getString(Constance.username);
                                     String mobile03 = object.getString(Constance.mobile);
+                                    if(TextUtils.isEmpty(mobile03)){
+                                        mobile03=username03;
+                                    }
                                     int level03 = object03.getInt(Constance.level);
                                     String joined_at03 = object03.getString(Constance.joined_at);
                                     int state03=object03.getInt(Constance.state);

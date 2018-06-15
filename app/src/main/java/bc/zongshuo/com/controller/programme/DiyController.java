@@ -1,14 +1,24 @@
 package bc.zongshuo.com.controller.programme;
 
+import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -54,11 +64,14 @@ import bc.zongshuo.com.listener.IDiyProductInfoListener;
 import bc.zongshuo.com.listener.INetworkCallBack;
 import bc.zongshuo.com.listener.ISelectScreenListener;
 import bc.zongshuo.com.ui.activity.IssueApplication;
+import bc.zongshuo.com.ui.activity.WebViewActivity;
 import bc.zongshuo.com.ui.activity.product.SelectGoodsActivity;
 import bc.zongshuo.com.ui.activity.programme.DiyActivity;
 import bc.zongshuo.com.ui.activity.programme.SelectSceneActivity;
 import bc.zongshuo.com.ui.activity.programme.SelectSchemeActivity;
 import bc.zongshuo.com.ui.activity.programme.ShareProgrammeActivity;
+import bc.zongshuo.com.ui.view.MyWebView;
+import bc.zongshuo.com.ui.view.ScannerUtils;
 import bc.zongshuo.com.ui.view.SingleTouchView;
 import bc.zongshuo.com.ui.view.StickerView;
 import bc.zongshuo.com.ui.view.TouchView;
@@ -110,6 +123,11 @@ public class DiyController extends BaseController implements INetworkCallBack {
     private StickerView mCurrentView;
     //存储贴纸列表
     private ArrayList<View> mViews;
+    private boolean hasSend;
+    private WebView webView;
+    private String mHtml;
+    private String mCurrentCpCardPath;
+    private Dialog dialog;
 
 
     public DiyController(DiyActivity v) {
@@ -321,15 +339,21 @@ public class DiyController extends BaseController implements INetworkCallBack {
                 String cproperty=object.getString(Constance.cproperty);
                 JSONArray propertieArray = object.getJSONArray(Constance.properties);
                 if (propertieArray.length() == 0) {
-                    sendGoShoppingCart(id, "", 1);
+                    int mount=object.getInt(Constance.warn_number);
+                    if(mount<1)mount=1;
+                    sendGoShoppingCart(id, "", mount);
                 } else {
                     if(!TextUtils.isEmpty(cproperty)){
-                        sendGoShoppingCart(id,cproperty,1);
+                        int mount=object.getInt(Constance.warn_number);
+                        if(mount<1)mount=1;
+                        sendGoShoppingCart(id,cproperty,mount);
                     }else {
                         if (!AppUtils.isEmpty(IssueApplication.mSelectProParamemt)) {
                             String paramentId = IssueApplication.mSelectProParamemt.get(id);
                             String property="{\"id\":" + paramentId + "}";
-                            sendGoShoppingCart(id, property, 1);
+                            int mount=object.getInt(Constance.warn_number);
+                            if(mount<1)mount=1;
+                            sendGoShoppingCart(id, property, mount);
                         }
                     }
 
@@ -569,6 +593,8 @@ public class DiyController extends BaseController implements INetworkCallBack {
             }).start();
 
 
+        }else if(requestCode==300){
+            displayCheckedGoods03("file://"+data.getStringExtra("path"));
         }
     }
 
@@ -1026,6 +1052,7 @@ public class DiyController extends BaseController implements INetworkCallBack {
 
     @Override
     public void onFailureListener(String requestCode, JSONObject ans) {
+        mView.hideLoading();
         getOutLogin(mView, ans);
     }
 
@@ -1037,32 +1064,59 @@ public class DiyController extends BaseController implements INetworkCallBack {
      * 产品详情
      */
     public void getProductDetail() {
-        try{
+        try {
             mPopWindow = new DiyProductInfoPopWindow(mView, mView);
             final JSONObject jsonObject = mView.mSelectedLightSA.get(IssueApplication.mLightIndex);
-            if (AppUtils.isEmpty(jsonObject)) {
+            JSONArray attachments = jsonObject.getJSONArray(Constance.attachments);
+            if (attachments == null || attachments.length() == 0) {
+                mNetWork.sendProductDetail(Integer.parseInt(jsonObject.getString(Constance.id)), new INetworkCallBack() {
+                    @Override
+                    public void onSuccessListener(String requestCode, JSONObject ans) {
+                        mSelectProductObject=ans.getJSONObject(Constance.product);
+                        mPopWindow.productObject = mSelectProductObject;
+                        mPopWindow.productId = mSelectProductObject.getString(Constance.id);
+                        mPopWindow.initViewData();
+                        mPopWindow.onShow(main_fl);
+                        mPopWindow.setListener(new IDiyProductInfoListener() {
+                            @Override
+                            public void onDiyProductInfo(int type, String msg) {
+                                getShowProductType(mSelectProductObject, type, msg);
+                            }
+                        });
+                    }
 
-            }else{
-                mSelectProductObject=jsonObject;
+                    @Override
+                    public void onFailureListener(String requestCode, JSONObject ans) {
+
+                    }
+                });
+            } else {
+                if (AppUtils.isEmpty(jsonObject)) {
+
+                } else {
+                    mSelectProductObject = jsonObject;
+                }
+
+                mPopWindow.productObject = mSelectProductObject;
+                mPopWindow.productId = mSelectProductObject.getString(Constance.id);
+                mPopWindow.initViewData();
+                mPopWindow.onShow(main_fl);
+                mPopWindow.setListener(new IDiyProductInfoListener() {
+                    @Override
+                    public void onDiyProductInfo(int type, String msg) {
+                        getShowProductType(mSelectProductObject, type, msg);
+                    }
+                });
             }
 
-            mPopWindow.productObject = mSelectProductObject;
-            mPopWindow.productId = mSelectProductObject.getString(Constance.id);
-            mPopWindow.initViewData();
-            mPopWindow.onShow(main_fl);
-            mPopWindow.setListener(new IDiyProductInfoListener() {
-                @Override
-                public void onDiyProductInfo(int type, String msg) {
-                    getShowProductType(mSelectProductObject, type, msg);
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
 
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void getShowProductType(JSONObject jsonObject, int type, String msg) {
         String productId = jsonObject.getString(Constance.id);
         switch (type) {
@@ -1080,11 +1134,84 @@ public class DiyController extends BaseController implements INetworkCallBack {
                 break;
             case 3://产品卡
                 String cardPath = NetWorkConst.WEB_PRODUCT_CARD + productId+"&attr="+jsonObject.getString(Constance.cproperty_id);
-                displayCheckedGoods03(cardPath);
+                Log.e("card",cardPath);
+//                showChanPinDialog(cardPath);
+                Intent intent=new Intent(mView, WebViewActivity.class);
+                intent.putExtra(Constance.url,cardPath);
+                mView.startActivityForResult(intent,300);
+//                final WebView webView=new WebView(mView);
+//                webView.loadUrl(cardPath);
+//                webView.setWebChromeClient(new WebChromeClient(){
+//                    @Override
+//                    public void onProgressChanged(WebView view, int newProgress) {
+//                        super.onProgressChanged(view, newProgress);
+//                        if(newProgress==100){
+////                            Log.e("file:","file://"+UIUtils.saveImage(webView));
+//                            displayCheckedGoods03("file://"+UIUtils.saveImage(webView));
+//                        }
+//                    }
+//                });
+
                 break;
         }
     }
+    public void showChanPinDialog(String path){
+        dialog = new Dialog(mView);
+        dialog.setContentView(R.layout.dialog_chanpin);
+        webView = dialog.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(new InJavaScriptLocalObj(),"local_obj");
+        webView.setWebViewClient(new MyWebViewClient());
+        webView.setInitialScale(20);
+        hasSend = false;
+        dialog.show();
+        webView.loadUrl(path);
+    }
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            hasSend=true;
+            webView.loadData(mHtml,  "text/html; charset=UTF-8", null);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mCurrentCpCardPath = ScannerUtils.saveImageToGallery(mView, ImageUtil.getBitmap(webView), ScannerUtils.ScannerType.RECEIVER);
+                    displayCheckedGoods03("file://"+mCurrentCpCardPath);
+                    if(dialog!=null&&dialog.isShowing())dialog.dismiss();
+                }
+            },1000);
+        }
+    };
 
+    final class MyWebViewClient extends WebViewClient {
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+        }
+        public void onPageFinished(WebView view, String url) {
+
+            view.loadUrl("javascript:window.local_obj.showSource('<head>'+"+
+                    "document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+            super.onPageFinished(view, url);
+        }
+    }
+
+    final class InJavaScriptLocalObj {
+        @JavascriptInterface
+        @SuppressWarnings("unused")
+        public void showSource(String html) {
+            Log.d("HTML", html);
+            mHtml = html.replace("font-size:.32rem","font-size:.82rem").replace("<img src=\"./","<img src=\"http://www.juhao.com/").replace("font-size:.6rem","font-size:.46rem");
+//            mHtml = html.replace("<p>","<a style=\" color:#666; font-size:20px;\">").replace("</p>","</a>").replace("<img src=\"./","<img src=\"http://www.juhao.com/");
+            if(!hasSend){
+                handler.sendEmptyMessage(0);
+            }
+        }
+    }
     /**
      * 背景图镜像
      */

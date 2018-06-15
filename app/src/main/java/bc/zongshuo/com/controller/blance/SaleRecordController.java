@@ -102,7 +102,7 @@ public class SaleRecordController extends BaseController implements AdapterView.
                                     }
                                     JSONArray dataList = ans.getJSONArray(Constance.account);
                                     String month=ans.getString(Constance.month);
-                                    tv_month.setText("本月收益：¥ "+month);
+                                    tv_month.setText("销售总额：¥ "+month);
                                     if (AppUtils.isEmpty(dataList) || dataList.size() == 0) {
                                         if (page == 1) {
                                             mNullView.setVisibility(View.VISIBLE);

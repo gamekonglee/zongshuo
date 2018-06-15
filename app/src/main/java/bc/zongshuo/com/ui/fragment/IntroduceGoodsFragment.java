@@ -136,7 +136,7 @@ public class IntroduceGoodsFragment extends BaseFragment implements View.OnClick
     public void onUserEvent(Integer action) {
         if (action == Constance.PROPERTY) {
             String property = ((ProDetailActivity) getActivity()).mPropertyValue;
-            int price=((ProDetailActivity) getActivity()).mPrice;
+            double price=((ProDetailActivity) getActivity()).mPrice;
             if (AppUtils.isEmpty(property))
                 return;
             mParamentTv.setText("已选 " + (property));

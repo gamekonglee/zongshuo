@@ -68,7 +68,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return;
             }
             try {
-                String imagePath = mData.getJSONObject(position).getJSONObject(Constance.app_img).getString(Constance.phone_img);
+                String imagePath = mData.getJSONObject(position).getJSONObject(Constance.default_photo).getString(Constance.thumb);
                 ImageLoader.getInstance().displayImage(imagePath, ((ItemViewHolder) holder).imageView);
                 String name = mData.getJSONObject(position).getString(Constance.name);
                 ((ItemViewHolder) holder).name_tv.setText(name);

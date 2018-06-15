@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Environment;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -13,8 +18,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
@@ -407,6 +417,38 @@ public class UIUtils {
         dialogWindow.setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
     }
+    /**
+     * 保存图片
+     *
+     */
+    public static String saveImage( WebView webView)  {
+        Picture picture = webView.capturePicture();
+        Bitmap b = Bitmap.createBitmap(
+                picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        picture.draw(c);
 
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/zspage/");
+        if(file.exists()) {
+            file.delete();
+        }
+            file.mkdirs();
+        String local_file=file.getAbsolutePath()+"/zspage.jpg";
+        FileOutputStream fos = null;
+        File local=new File(local_file);
+        try {
+            local.createNewFile();
+            fos = new FileOutputStream(local.getAbsoluteFile());
+            if (fos != null) {
+                b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                fos.close();
+            }
+            return local.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+        return local.getAbsolutePath();
+        }
+    }
 
 }

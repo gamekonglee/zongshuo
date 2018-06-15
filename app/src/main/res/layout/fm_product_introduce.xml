@@ -67,23 +67,37 @@
                             android:gravity="center_vertical|left"
                             android:drawableLeft="@drawable/service"/>
                     </LinearLayout>
-                    <TextView
-                        android:id="@+id/proNameTv"
+                    <LinearLayout
+                        android:id="@+id/ll_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/band_ll"
-                        android:background="#FFFFFF"
-                        android:paddingLeft="10dp"
-                        android:textColor="#555555"
-                        android:textSize="18sp"
                         android:layout_marginRight="40dp"
                         android:layout_marginTop="5dp"
-                        />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/proNameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#FFFFFF"
+                            android:paddingLeft="10dp"
+                            android:textColor="#555555"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:id="@+id/tv_sale"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="13sp"
+                            android:textColor="#888888"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
                     <TextView
                         android:id="@+id/numTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/proNameTv"
+                        android:layout_below="@id/ll_name"
                         android:background="#FFFFFF"
                         android:paddingLeft="10dp"
                         android:textSize="14sp"
@@ -94,7 +108,7 @@
                         android:id="@+id/collect_rl"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/proNameTv"
+                        android:layout_alignTop="@id/ll_name"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="5dp"
                         android:gravity="center_horizontal"
@@ -134,7 +148,7 @@
                         android:id="@+id/unPriceTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/proNameTv"
+                        android:layout_below="@id/ll_name"
                         android:paddingLeft="10dp"
                         android:textColor="@color/fontColor6"
                         android:layout_alignBottom="@id/proPriceTv"

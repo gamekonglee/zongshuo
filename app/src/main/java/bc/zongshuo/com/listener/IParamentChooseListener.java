@@ -6,5 +6,5 @@ package bc.zongshuo.com.listener;
  * @description :
  */
 public interface IParamentChooseListener {
-    public void onParamentChanged(String text,Boolean isGoCart,String property,String propertyId,String inventoryNum,int mount,int price,int goType,String url);
+    public void onParamentChanged(String text,Boolean isGoCart,String property,String propertyId,String inventoryNum,int mount,double price,int goType,String url);
 }

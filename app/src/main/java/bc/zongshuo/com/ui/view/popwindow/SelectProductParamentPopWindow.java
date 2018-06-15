@@ -51,7 +51,7 @@ public class SelectProductParamentPopWindow extends BasePopwindown implements Vi
     private JSONObject itemObject;
     private int mAmount = 1;
     private String mParamentValue = "";
-    private int mPrice = 0;
+    private double mPrice = 0;
     private String mInventoryNum = "0";
     private String mParamentId = "";
     private String mProductId = "";
@@ -107,12 +107,12 @@ public class SelectProductParamentPopWindow extends BasePopwindown implements Vi
             ImageLoadProxy.displayImage(img, goods_iv);
             String token = MyShare.get(mContext).getString(Constance.TOKEN);
             if (AppUtils.isEmpty(token)) {
-                mPrice = itemObject.getInt(("attr_price_" + (parantLevel + 1)).replace("10", ""));
+                mPrice = Double.parseDouble(itemObject.getString(("attr_price_" + (parantLevel + 1)).replace("10", "")));
             } else {
                 int levelId = IssueApplication.mUserObject.getInt(Constance.level_id);
-                mPrice = itemObject.getInt(("attr_price_" + (levelId + 1)).replace("10", ""));
+                mPrice = Double.parseDouble(itemObject.getString(("attr_price_" + (levelId + 1)).replace("10", "")));
             }
-            proPriceTv.setText("￥" + (Double.parseDouble(mGoodObject.getString(Constance.current_price)) + mPrice));
+            proPriceTv.setText("￥" + mPrice);
             if (!AppUtils.isEmpty(mInventoryNum)) {
                 mInventoryNum = mInventoryNum.replace(".00", "");
                 inventory_tv.setText("库存：" + mInventoryNum);
@@ -273,7 +273,7 @@ public class SelectProductParamentPopWindow extends BasePopwindown implements Vi
                             mInventoryNum = mInventoryNum.replace(".00", "");
                             inventory_tv.setText("库存：" + mInventoryNum);
                         }
-                        proPriceTv.setText("￥" + (mPrice + mGoodObject.getInt(Constance.current_price)));
+                        proPriceTv.setText("￥" + mPrice);
                         gridViewAdapter.mCurrentPoistion = position;
                         gridViewAdapter.notifyDataSetChanged();
                         parament_tv.setText(itemObject.getString(Constance.attr_name));

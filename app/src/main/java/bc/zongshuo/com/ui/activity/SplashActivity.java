@@ -1,6 +1,11 @@
 package bc.zongshuo.com.ui.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -30,6 +35,7 @@ public class SplashActivity extends BaseActivity {
     private AlphaAnimation mAnimation;
     private TextView version_tv;
     private SplashController mController;
+    private boolean remember;
 
     @Override
     protected void InitDataView() {
@@ -164,7 +170,13 @@ public class SplashActivity extends BaseActivity {
 //        }).start();
 //    }
 
-
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            showDialog();
+        }
+    };
     @Override
     protected void initData() {
         mAnimation = new AlphaAnimation (0.2f, 1.0f);
@@ -174,19 +186,83 @@ public class SplashActivity extends BaseActivity {
     private class TimerSchedule extends TimerTask {
         @Override
         public void run() {
-           Boolean isFinish= MyShare.get(SplashActivity.this).getBoolean(Constance.ISFIRSTISTART);
-            if(isFinish){
-               String token= MyShare.get(SplashActivity.this).getString(Constance.TOKEN);
-               String userCode= MyShare.get(SplashActivity.this).getString(Constance.USERCODE);
-                if(AppUtils.isEmpty(token) && AppUtils.isEmpty(userCode)){
-                    IntentUtil.startActivity(SplashActivity.this, MainActivity.class, true);
-                }else{
-                    IntentUtil.startActivity(SplashActivity.this, MainActivity.class, true);
-                }
-
-            }else{
-                IntentUtil.startActivity(SplashActivity.this, LeadPageActivity.class, true);
+            boolean remember=MyShare.get(SplashActivity.this).getBoolean(Constance.apply_remember);
+            if(!remember){
+                handler.sendEmptyMessage(0);
+            }else {
+                startAct();
             }
+        }
+    }
+
+    private void startAct() {
+        Boolean isFinish= MyShare.get(SplashActivity.this).getBoolean(Constance.ISFIRSTISTART);
+        if(isFinish){
+            String token= MyShare.get(SplashActivity.this).getString(Constance.TOKEN);
+            String userCode= MyShare.get(SplashActivity.this).getString(Constance.USERCODE);
+            if(AppUtils.isEmpty(token) && AppUtils.isEmpty(userCode)){
+                IntentUtil.startActivity(SplashActivity.this, MainActivity.class, true);
+            }else{
+                IntentUtil.startActivity(SplashActivity.this, MainActivity.class, true);
+            }
+
+        }else{
+            IntentUtil.startActivity(SplashActivity.this, LeadPageActivity.class, true);
+        }
+    }
+    public void showDialog(){
+        final Dialog dialog=new Dialog(this,R.style.customDialog);
+        dialog.setContentView(R.layout.dialog_apply);
+        ImageView iv_dismiss=dialog.findViewById(R.id.iv_dismiss);
+        TextView tv_dimiss=dialog.findViewById(R.id.tv_dismiss);
+        ImageView iv_apply=dialog.findViewById(R.id.iv_apply);
+        final TextView tv_remember=dialog.findViewById(R.id.tv_remember);
+        remember = false;
+        iv_dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyShare.get(SplashActivity.this).putBoolean(Constance.apply_remember, remember);
+                dialog.dismiss();
+                startAct();
+            }
+        });
+        tv_dimiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyShare.get(SplashActivity.this).putBoolean(Constance.apply_remember, remember);
+                dialog.dismiss();
+                startAct();
+            }
+        });
+        tv_remember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(remember){
+                    remember =false;
+                    Drawable drawable=getResources().getDrawable(R.mipmap.jm_icom_nor);
+                    drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumWidth());
+                    tv_remember.setCompoundDrawables(drawable,null,null,null);
+                }else {
+                    remember =true;
+                    Drawable drawable=getResources().getDrawable(R.mipmap.jm_icon_sel);
+                    drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumWidth());
+                    tv_remember.setCompoundDrawables(drawable,null,null,null);
+                }
+            }
+        });
+        iv_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                startActivity(new Intent(SplashActivity.this,BussinessApplyActivity.class));
+                finish();
+            }
+        });
+        try {
+            dialog.show();
+        }catch (Exception e){
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
         }
     }
 }

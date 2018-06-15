@@ -42,5 +42,6 @@
     <dimen name="spacing_tiny">6dp</dimen>
     <dimen name="spacing_tinyer">4dp</dimen>
     <dimen name="spacing_tinyest">2dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

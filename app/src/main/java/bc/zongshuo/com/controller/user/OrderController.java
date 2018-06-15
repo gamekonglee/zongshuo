@@ -649,15 +649,15 @@ public class OrderController extends BaseController implements PullToRefreshLayo
             String user_name = orderobject.getString(Constance.user_name);
 
             String levelValue = "";
-            if (mOrderLevel == 101) {
+            if (mOrderLevel == 100) {
                 levelValue = "平台客户";
-            } else if (mOrderLevel == 102) {
+            } else if (mOrderLevel == 101) {
                 levelValue = "代理商";
-            } else if (mOrderLevel == 103) {
+            } else if (mOrderLevel == 102) {
                 levelValue = "加盟商";
-            } else if(mOrderLevel == 104){
+            } else if(mOrderLevel == 103){
                 levelValue = "经销商";
-            }else if(mOrderLevel == 105){
+            }else if(mOrderLevel == 104){
                 levelValue = "消费者";
             }
             getState(state, holder.state_tv, holder.do_tv, holder.do02_tv, holder.do03_tv);
@@ -667,35 +667,27 @@ public class OrderController extends BaseController implements PullToRefreshLayo
             holder.remark_tv.setVisibility(View.VISIBLE);
 
             if (mLevel == 100) {
-
-                if (mLevel != mOrderLevel && state == 0) {
-                    mIsUpdate = true;
-                    holder.update_money_tv.setVisibility(View.GONE);
-                    if (state == 0) {
-                        holder.do_tv.setVisibility(View.GONE);
-                        holder.do02_tv.setVisibility(View.GONE);
-                        holder.do03_tv.setVisibility(View.GONE);
-                        holder.chat_buy_tv.setVisibility(View.VISIBLE);
-
-                    }
-
-                } else {
-                    holder.update_money_tv.setVisibility(View.GONE);
-                    mIsUpdate = false;
-                    holder.chat_buy_tv.setVisibility(View.GONE);
-                }
-
                 if (state == 1) {
                     holder.consigment_tv.setVisibility(View.VISIBLE);
                 } else {
                     holder.consigment_tv.setVisibility(View.GONE);
                 }
-
-
             } else {
                 holder.update_money_tv.setVisibility(View.GONE);
                 mIsUpdate = false;
                 holder.consigment_tv.setVisibility(View.GONE);
+            }
+            if (mLevel != mOrderLevel && state == 0) {
+                mIsUpdate = true;
+                holder.update_money_tv.setVisibility(View.GONE);
+                holder.do_tv.setVisibility(View.GONE);
+                holder.do02_tv.setVisibility(View.GONE);
+                holder.do03_tv.setVisibility(View.GONE);
+                holder.chat_buy_tv.setVisibility(View.VISIBLE);
+            } else {
+                holder.update_money_tv.setVisibility(View.GONE);
+                mIsUpdate = false;
+                holder.chat_buy_tv.setVisibility(View.GONE);
             }
 
             //修改价格
@@ -736,6 +728,26 @@ public class OrderController extends BaseController implements PullToRefreshLayo
                         }
                         mPosition = position;
                         mOrderId = orderId;
+
+                        mApliayView = new AlertView(null, null, "取消", null,
+                                Constance.APLIAYTYPE,
+                                mView.getActivity(), AlertView.Style.ActionSheet, new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Object o, int position) {
+                                mView.setShowDialog(true);
+                                mView.setShowDialog("正在付款中!");
+                                mView.showLoading();
+                                if (mApliayView.toString().equals(o.toString())) {
+                                    if (position == 0) {
+                                        sendPayment(mOrderId, "alipay.app");
+                                    } else if (position == 1) {
+                                        sendPayment(mOrderId, "wxpay.app");
+                                    }else {
+                                        mView.hideLoading();
+                                    }
+                                }
+                            }
+                        });
                         mApliayView.show();
                         //                        mPosition = position;
                         //                        mView.setShowDialog(true);

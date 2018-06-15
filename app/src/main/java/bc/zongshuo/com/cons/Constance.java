@@ -489,4 +489,5 @@ public class Constance {
     public static String month="month";
     public static String cproperty_id="cproperty_id";
     public static String goods_attr_id="goods_attr_id";
+    public static String apply_remember="apply_remember";
 }

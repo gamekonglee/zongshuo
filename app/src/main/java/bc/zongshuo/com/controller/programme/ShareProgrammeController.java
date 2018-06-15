@@ -93,7 +93,6 @@ public class ShareProgrammeController extends BaseController {
                         mView.setShowDialog(true);
                         mView.setShowDialog("正在保存中..");
                         mView.showLoading();
-
                         new Thread(new Runnable() {
                             @Override
                             public void run() {

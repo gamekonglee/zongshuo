@@ -944,7 +944,14 @@ public class Network {
     }
 
 
-
+    public void sendDealer(String name, String phone, String region, String address, String remark, INetworkCallBack iNetworkCallBack) {
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.add("name",name);
+        jsonObject.add("phone",phone);
+        jsonObject.add("region",region);
+        jsonObject.add("address",address);
+        sendRequest(jsonObject,NetWorkConst.DEALER_ADD,1,0,iNetworkCallBack);
+    }
 }
 
 

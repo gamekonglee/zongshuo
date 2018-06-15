@@ -94,7 +94,6 @@ public class MainController extends BaseController implements INetworkCallBack {
 //                                        mView.registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 //                                        Intent intent = new Intent(mView, UpdateApkService.class);
 //                                        mView.startService(intent);
-
                                         Intent intent = new Intent();
                                         intent.setAction("android.intent.action.VIEW");
                                         Uri content_url = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=bc.zongshuo.com");

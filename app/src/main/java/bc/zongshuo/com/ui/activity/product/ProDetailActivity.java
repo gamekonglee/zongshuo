@@ -38,7 +38,7 @@ public class ProDetailActivity extends BaseActivity {
     public static JSONObject goodses;
     public String mProperty = "";
     public String mPropertyValue = "";
-    public int mPrice = 0;
+    public double mPrice = 0;
     private RelativeLayout shopping_cart_Ll;
     public String mAttrId;
 

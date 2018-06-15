@@ -8,20 +8,20 @@ android {
         applicationId "bc.zongshuo.com"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 12
-        versionName "1.12"
+        versionCode 15
+        versionName "1.15"
         multiDexEnabled true
 
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
             // 还可以添加
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "e56ba5e82c5db48584191861", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
 
@@ -63,16 +63,17 @@ android {
     }
 
 
-
 }
 
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+//    implementation 'com.android.support:design:27.1.1'
     provided fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     implementation(name: 'libraryConvenientBanner', ext: 'aar')
     implementation(name: 'circleimageview-2.0.0', ext: 'aar')
-    implementation 'com.android.support:appcompat-v7:23.0.1'
+//    implementation 'com.android.support:appcompat-v7:23.0.1'
     //    implementation 'com.android.support:recyclerview-v7:23.0.1'
     //    implementation 'com.android.support:recyclerview-v7:26.0.+'
     implementation files('libs/universalimageloader.jar')
@@ -84,8 +85,8 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation project(':filter-lib')
-        implementation files('libs/MobCommons-2016.1201.1839.jar')
-        implementation files('libs/MobTools-2016.1201.1839.jar')
+    implementation files('libs/MobCommons-2016.1201.1839.jar')
+    implementation files('libs/MobTools-2016.1201.1839.jar')
     //    implementation 'me.dm7.barcodescanner:zxing:1.9'
     compile 'com.google.zxing:core:3.2.0'
     implementation 'cn.jiguang.sdk:jpush:3.0.3'

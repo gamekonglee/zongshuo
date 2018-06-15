@@ -441,12 +441,14 @@ public class CommonUtil {
         {
             if (j == 0)
             {
-
                 firstServerDigit = Integer.parseInt(serverDigits[0]);
                 Log.v("520","firstServerDigit"+firstServerDigit);
             } else if (j == 1)
-            {
-                secondServerDigit = Integer.parseInt(serverDigits[1]);
+            {try {
+                secondServerDigit = Integer.parseInt(serverDigits[1].trim());
+            }catch (Exception e){
+                secondServerDigit=secondLocalDigit+1;
+            }
             } else if (j == 2)
             {
                 thirdServerDigit = Integer.parseInt(serverDigits[2]);
